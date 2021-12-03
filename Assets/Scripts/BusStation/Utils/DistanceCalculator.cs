@@ -24,13 +24,13 @@ public class DistanceCalculator : MonoBehaviour
 
     }
 
-    public float CalculateDistanceMeters (float lat1, float lon1, float lat2, float lon2)
+    public float CalculateDistanceMeters (float lat1, float lng1, float lat2, float lng2)
     {
         float R = 6378.137f; // Radius of Earth in KM
         float dLat = lat2 * Mathf.PI / 180 - lat1 * Mathf.PI / 180;
-        float dLon = lon2 * Mathf.PI / 180 - lon1 * Mathf.PI / 180;
-        float a = Mathf.Sin(dLat / 2) * Mathf.Sin(dLat / 2) + Mathf.Cos(lat1 * Mathf.PI / 180) * Mathf.Cos(lat2 * Mathf.PI / 180) * Mathf.Sin(dLon / 2)
-            * Mathf.Sin(dLon / 2);
+        float dlng = lng2 * Mathf.PI / 180 - lng1 * Mathf.PI / 180;
+        float a = Mathf.Sin(dLat / 2) * Mathf.Sin(dLat / 2) + Mathf.Cos(lat1 * Mathf.PI / 180) * Mathf.Cos(lat2 * Mathf.PI / 180) * Mathf.Sin(dlng / 2)
+            * Mathf.Sin(dlng / 2);
         float c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a));
         float d = R * c;
         return d * 1000f;

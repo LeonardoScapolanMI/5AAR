@@ -13,11 +13,11 @@ namespace UnityARCompass
         [HideInInspector]
         public float startLat;
         [HideInInspector]
-        public float startLon;
+        public float startLng;
         [HideInInspector]
         public float endLat;
         [HideInInspector]
-        public float endLon;
+        public float endLng;
         
         #region Unity Callback
 
@@ -35,9 +35,10 @@ namespace UnityARCompass
             _lastCompassTimestamp = Input.compass.timestamp;
 
             var direction = -(Input.compass.trueHeading - Input.compass.magneticHeading)
-                                - DirectionGenerator.angleFromCoordinate(startLat, startLon, endLat, endLon);
+                                - DirectionGenerator.angleFromCoordinate(startLat, startLng, endLat, endLng);
 
-            //Debug.Log("list all"+startLat+" "+startLon+" "+endLat+" "+endLon);
+            //Debug.Log("list all"+startLat+" "+startLng+" "+endLat+" "+endLng);
+            //Debug.Log(direction);
             // avoid shaking
             if(Mathf.Abs(tempDirection - direction) < 2.0f)
                 direction = tempDirection;

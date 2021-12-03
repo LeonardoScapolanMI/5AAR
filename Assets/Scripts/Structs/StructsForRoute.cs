@@ -12,11 +12,35 @@ public struct distance {
 	public string text;
 	public int value;
 }
-
 [System.Serializable]
 public struct duration {
 	public string text;
 	public int value;
+}
+[System.Serializable]
+public struct stopInfo {
+	public loc location;
+	public string stop_name;
+}
+[System.Serializable]
+public struct time {
+	public string text;
+}
+[System.Serializable]
+public struct innerStep {
+	public loc end_location;
+	public loc start_location;
+	public string travel_mode;
+	public distance dis;
+	public duration dur;
+}
+[System.Serializable]
+public struct transitDetails {
+	public stopInfo arrival_stop;
+	public time arrival_time;
+	public stopInfo departure_stop;
+	public time departure_time;
+	public string num_stops;
 }
 [System.Serializable]
 public struct step {
@@ -26,6 +50,8 @@ public struct step {
 	public distance dis;
 	public duration dur;
 	public string maneuver;
+	public List<innerStep> steps;
+	public transitDetails transit_details;
 }
 [System.Serializable]
 public struct leg {

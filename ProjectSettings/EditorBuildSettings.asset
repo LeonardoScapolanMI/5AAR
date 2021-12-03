@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/FindBusStation.unity
     guid: e2ab3041c2ab74f278fe32b6967459a3
   - enabled: 1
-    path: Assets/Scenes/ARRecognition.unity
-    guid: 6bdce89659816455b9f906fc62d19910
+    path: Assets/Scenes/Settings.unity
+    guid: 6d2668db0e71d43e686b6421abba0c8b
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}

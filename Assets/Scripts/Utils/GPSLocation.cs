@@ -8,7 +8,7 @@ public class GPSLocation : MonoBehaviour
     [HideInInspector]
     public float lat;
     [HideInInspector]
-    public float lon;
+    public float lng;
     [HideInInspector]
     public string status;
     private static GPSLocation _instance;
@@ -55,7 +55,7 @@ public class GPSLocation : MonoBehaviour
         }else{
             status = "Running";
             Debug.Log("GPS Location is "+ status);
-            //print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
+            //print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.lnggitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
             InvokeRepeating("UpdateGPSData", 0f, 1f);
         }
     }
@@ -64,13 +64,13 @@ public class GPSLocation : MonoBehaviour
             //Access granted to gps values and it has been init
             status = "Running";
             // latitudeValue.text = Input.location.lastData.latitude.ToString();
-            // longitudeValue.text = Input.location.lastData.longitude.ToString();
+            // lnggitudeValue.text = Input.location.lastData.lnggitude.ToString();
             // altitudeValue.text = Input.location.lastData.altitude.ToString();
             // horizontalAccuracyValue.text = Input.location.lastData.horizontalAccuracy.ToString();
             // timestampValue.text = Input.location.lastData.timestamp.ToString();
             lat = Input.location.lastData.latitude;
-            lon = Input.location.lastData.longitude;
-            Debug.Log(lat+"  "+lon);
+            lng = Input.location.lastData.longitude;
+            Debug.Log(lat+"  "+lng);
         }else{
             // service is stopped
             status = "Stop";

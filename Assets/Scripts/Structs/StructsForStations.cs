@@ -8,15 +8,26 @@ public struct location {
 	public float lng;
 }
 [System.Serializable]
-public struct geometry {
-	public location loc;
+public struct viewport {
+	public location northeast;
+	public location southwest;
 }
 [System.Serializable]
-public struct station {
-	public geometry geo;
+public struct geometry {
+	public location location;
+	public viewport viewport;
+}
+[System.Serializable]
+public struct result {
+	public geometry geometry;
 	public string name;
 }
 [System.Serializable]
+public struct attr {
+	
+}
+[System.Serializable]
 public struct attribution {
-	public List<station> stations;
+	public List<attr> attrs;
+	public List<result> results;
 }

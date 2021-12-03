@@ -3,26 +3,24 @@
 
 ## Functions
 
-### ARRecognition Scene
+### Settings Scene
 
-1. recognize the object which scanned by [arkit scanner](https://developer.apple.com/documentation/arkit/content_anchors/scanning_and_detecting_3d_objects)
-2. recognize the tabacchi sign by image recognition
-
-2. add visual help arrow aside (within 2 sec)
+1. destination setting
 
 ### FindBusStation Scene
 
-1. find near bus station
-2. return the route to the station with steps
-3. show and update step information while the user is walking [we set it 5m accuracy](https://docs.unity3d.com/ScriptReference/LocationService.Start.html)
-4. add arrow toward the temp destination
+1. find near tabacchi shop
+2. find near bus station
+3. return the route to the station/shop with steps
+4. show and update step information while the user is walking [we set it 10m accuracy](https://docs.unity3d.com/ScriptReference/LocationService.Start.html)
+5. add arrow toward the temp destination
+6. remind the arrival time of the bus
 
 #### TODO: 
 
-- [ ] decide which station is our target
-- [ ] scan the bus ticket validator and test the effect
-- [ ] add visual reward when users achieve the temp destination
-- [ ] add reaction after recognition
+- [ ] image recognition of ticket
+- [ ] remind the user to get off the bus by gps location
+- [ ] seperate the scene?
 
  ## Config file
 
