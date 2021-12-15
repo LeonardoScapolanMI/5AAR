@@ -55,6 +55,7 @@ public class ArrowNavigation : MonoBehaviour
         {
             destLat = float.Parse(InputFieldSubmit.tabacchiCoordinates[0], CultureInfo.InvariantCulture);
             destLng = float.Parse(InputFieldSubmit.tabacchiCoordinates[1], CultureInfo.InvariantCulture);
+            Debug.Log(destLat+", "+destLng);
             yield return new WaitForSecondsRealtime(1);
             yield return StartCoroutine(ClickToGetStepsInformation());
         }
@@ -62,6 +63,7 @@ public class ArrowNavigation : MonoBehaviour
         {
             destLat = float.Parse(InputFieldSubmit.destinationCoordinates[0], CultureInfo.InvariantCulture);
             destLng = float.Parse(InputFieldSubmit.destinationCoordinates[1], CultureInfo.InvariantCulture);
+            Debug.Log(destLat+", "+destLng);
             yield return new WaitForSecondsRealtime(1);
             yield return StartCoroutine(ClickToGetStepsInformation());
         }
@@ -107,6 +109,7 @@ public class ArrowNavigation : MonoBehaviour
         ARCompassIOS.endLat = destLat;
         ARCompassIOS.endLng = destLng;
         int distance = Mathf.RoundToInt(utils.CalculateDistanceMeters(lat, lng, destLat, destLng));
+        Debug.Log("-------"+distance);
         // constantly update distance shown
         //Debug.Log("distance:"+distance.ToString());
         textMeshProUGUI.text = distance.ToString() + "m";

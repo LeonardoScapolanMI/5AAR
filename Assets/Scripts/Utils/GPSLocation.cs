@@ -75,7 +75,7 @@ public class GPSLocation : MonoBehaviour
             // timestampValue.text = Input.location.lastData.timestamp.ToString();
             lat = Input.location.lastData.latitude;
             lng = Input.location.lastData.longitude;
-            //Debug.Log(lat+"  "+lng);
+            Debug.Log(lat+"  "+lng);
         }else{
             // service is stopped
             status = "Stop";
