@@ -120,7 +120,7 @@ public class GoogleMapAPIQuery : MonoBehaviour
         origin = "origin=45.4806988%2C9.2245384";
 #endif
         //TODO: set the dest
-        string dest = "destination=" + destLat.ToString("G", CultureInfo.InvariantCulture) + "%2C" + destLng.ToString("G", CultureInfo.InvariantCulture);
+        string dest = "destination=" + destLat +"%2C" + destLng;
 		string mode = "mode=transit";
         string transit_mode = "transit_mode=bus";
         string transit_routing_preference="transit_routing_preference=fewer_transfers";

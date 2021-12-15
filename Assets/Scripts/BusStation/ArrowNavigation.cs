@@ -26,7 +26,8 @@ public class ArrowNavigation : MonoBehaviour
     float brng;
     float compassBrng;
     TextMeshProUGUI textMeshProUGUI;
-
+    float tabacchiLat;
+    float tabacchiLng;
     
     //compass related 
     GameObject compass;
@@ -52,17 +53,19 @@ public class ArrowNavigation : MonoBehaviour
     {
         if(phase == Phases.BUY_TICKET)
         {
-            yield return StartCoroutine(GoogleAPIScript.TabacchiInOrder());
+            destLat = float.Parse(InputFieldSubmit.tabacchiCoordinates[0], CultureInfo.InvariantCulture);
+            destLng = float.Parse(InputFieldSubmit.tabacchiCoordinates[1], CultureInfo.InvariantCulture);
+            yield return new WaitForSecondsRealtime(1);
+            yield return StartCoroutine(ClickToGetStepsInformation());
         }
         else if(phase == Phases.FIND_BUS_STOP) 
         {
-            float destLat = float.Parse(InputFieldSubmit.destinationCoordinates[0], CultureInfo.InvariantCulture);
-            float destLng = float.Parse(InputFieldSubmit.destinationCoordinates[1], CultureInfo.InvariantCulture);
-            //Debug.Log(destLat.ToString()+destLng.ToString());
-            yield return StartCoroutine (GoogleAPIScript.GetBusRouteJSON (destLat, destLng));//45.5168268f, 9.2166683f
+            destLat = float.Parse(InputFieldSubmit.destinationCoordinates[0], CultureInfo.InvariantCulture);
+            destLng = float.Parse(InputFieldSubmit.destinationCoordinates[1], CultureInfo.InvariantCulture);
+            yield return new WaitForSecondsRealtime(1);
+            yield return StartCoroutine(ClickToGetStepsInformation());
         }
-        yield return new WaitForSecondsRealtime(1);
-        yield return StartCoroutine(ClickToGetStepsInformation());
+        
 
     }
     IEnumerator ClickToGetStepsInformation()
@@ -80,8 +83,8 @@ public class ArrowNavigation : MonoBehaviour
         panel.SetActive(true);
         textMeshProUGUI = panel.GetComponent<TextMeshProUGUI>();
         Debug.Log(textMeshProUGUI.text);
-        Debug.Log(JsonUtility.ToJson(steps[0], true));
-        Instruction.text = utils.RemoveSpecialCharacters(steps[count].html_instructions);
+        //Debug.Log(JsonUtility.ToJson(steps[0], true));
+        Instruction.text = "follow the arrow"; //utils.RemoveSpecialCharacters(steps[count].html_instructions);
         textMeshProUGUI.text = "Distance here";
         //texts[0].text = "Distance here";
         //texts[1].text = "Default"; // description
@@ -96,8 +99,8 @@ public class ArrowNavigation : MonoBehaviour
     {
         lat = GPSInstance.lat;
         lng = GPSInstance.lng;
-        destLat = steps[count].end_location.lat;
-        destLng = steps[count].end_location.lng;
+        //destLat = steps[count].end_location.lat;
+        //destLng = steps[count].end_location.lng;
         //update compass direction
         ARCompassIOS.startLat = lat;
         ARCompassIOS.startLng = lng;
@@ -110,31 +113,13 @@ public class ArrowNavigation : MonoBehaviour
         //texts[0].text = distance.ToString() + "m";
 
         if (isCollide())
-                    {
-                        //Destroy(panel);
-                        //panels count = panels[count+1]?
-                        count++;
-                        if (count < steps.Count)
-                        {
-                            Debug.Log(utils.RemoveSpecialCharacters(steps[count].html_instructions));
-                            ConversationController.istance.ChangeTextFields(utils.RemoveSpecialCharacters(steps[count].html_instructions));
-                            //Instruction.text = utils.RemoveSpecialCharacters(steps[count].html_instructions);
-                            //panel = Instantiate(PanelPrefab);//,directionsPanel
-                            //texts = panel.GetComponentsInChildren<TextMeshPro>();
-                            //texts[1].text = steps[count].maneuver; // description
-                            //texts[2].text = "Step " + (count+1) + " / " + steps.Count;
-                            //texts[3].text = steps[count].end_location.lat + ", " + steps[count].end_location.lng;
-                        }
-                    }
-                    //when arriving the dest, cancel this invokerepeating. 
-					if (count == steps.Count)
-                    {
-                        Destroy(compass);
-                        panel.SetActive(false);
-                        //Destroy(CompassObject);
-                        if(afterDestinationCallback != null) {afterDestinationCallback.Invoke();};
-                        CancelInvoke();
-                    }
+        {
+            Destroy(compass);
+            panel.SetActive(false);
+            //Destroy(CompassObject);
+            if(afterDestinationCallback != null) {afterDestinationCallback.Invoke();};
+            CancelInvoke();
+        }
 				
 	}
 
